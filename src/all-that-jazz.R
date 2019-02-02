@@ -1,6 +1,6 @@
 configure <- function(date_yymm) {
   base_url <- "http://www.allthatjazz.kr/"
-  sub_url <- str_c("xa02x", as.character(date_yymm), ".htm")
+  sub_url <- str_c("xa02x", date_yymm, ".htm")
   tag <- "td"
   list("base_url" = base_url, "sub_url" = sub_url, "tag" = tag)
 }
