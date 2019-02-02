@@ -1,13 +1,11 @@
 library(tidyverse)
 library(rvest)
-source("src/functions.R")
+source("src/schedule-utils.R")
 
 
-base_url <- "http://www.allthatjazz.kr/"
-schedule <- get_schedule(base_url)
-schedule
+schedule <- get_schedule_all(date_yymm = 1901)
+schedule %>% select(date, stage, team)
 
-when_my_star_performs("허소영", schedule)
-when_my_star_performs("김영후", schedule)
 when_my_star_performs("서수진", schedule)
-when_my_star_performs(c("허소영", "김영후", "서수진"), schedule)
+when_my_star_performs("김영후", schedule)
+when_my_star_performs(c("김영후", "서수진"), schedule)
