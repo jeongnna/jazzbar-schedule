@@ -1,8 +1,6 @@
 configure <- function(date_yymm) {
   base_url <- "http://www.clubevans.com/"
-  sub_url <- str_c("bbs/board.php?schedule_ym=20", 
-                   as.character(date_yymm), 
-                   "&bo_table=TODAYS_LIVE")
+  sub_url <- str_c("bbs/board.php?schedule_ym=20", date_yymm, "&bo_table=TODAYS_LIVE")
   tag <- ".default"
   list("base_url" = base_url, "sub_url" = sub_url, "tag" = tag)
 }
