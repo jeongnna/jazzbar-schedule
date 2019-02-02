@@ -23,23 +23,6 @@ get_date <- function(html) {
 }
 
 
-get_team_info <- function(html) {
-  team_name <- 
-    html %>% 
-    html_text(trim = TRUE) %>% 
-    str_replace("^[:digit:]' ", "")
-  
-  team_url <- 
-    html %>% 
-    html_attr("href") %>% 
-    str_extract("\\(\'.*\'\\)") %>% 
-    str_sub(3, -3) %>% 
-    str_replace(".htm", "a.htm")
-  
-  list("team" = team_name, "url" = team_url)
-}
-
-
 get_team <- function(html) {
   team_name <- 
     html %>% 
