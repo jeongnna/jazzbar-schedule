@@ -15,11 +15,11 @@ library(rvest)
 source("src/functions.R")
 ```
 
-`get_schedule` 함수로 공연 스케줄을 불러옵니다. `yy`년 `mm`월의 스케줄을 불러오고 싶으면 `date_yymm` 인자에 `"1902"`를 입력합니다. `date_yymm` 인자를 생략하면 현재 날짜를 기준으로 자동으로 설정됩니다.
+`get_schedule` 함수로 공연 스케줄을 불러옵니다. `yy`년 `mm`월의 스케줄을 불러오고 싶으면 `date_yymm` 인자에 `yymm`를 입력합니다. `date_yymm` 인자를 생략하면 현재 날짜를 기준으로 자동으로 설정됩니다.
 
 ```{r, warning = FALSE}
 base_url <- "http://www.allthatjazz.kr/"
-schedule <- get_schedule(base_url, date_yymm = "1902")
+schedule <- get_schedule(base_url, date_yymm = 1902)
 schedule %>% select(date, stage, team)
 ```
 

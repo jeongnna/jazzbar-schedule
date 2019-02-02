@@ -5,11 +5,11 @@ When my star performs
 
 웹 스크래핑을 통해 다양한 재즈바의 공연 스케줄을 통합하는 프로그램입니다. 검색을 통해 원하는 뮤지션의 스케줄만 따로 뽑아낼 수도 있습니다. 현재는 데모버전으로 이태원 올댓재즈의 스케줄만 지원합니다.
 
-`get_schedule` 함수로 공연 스케줄을 불러옵니다. `yy`년 `mm`월의 스케줄을 불러오고 싶으면 `date_yymm` 인자에 `"1902"`를 입력합니다. `date_yymm` 인자를 생략하면 현재 날짜를 기준으로 자동으로 설정됩니다.
+`get_schedule` 함수로 공연 스케줄을 불러옵니다. `yy`년 `mm`월의 스케줄을 불러오고 싶으면 `date_yymm` 인자에 `yymm`를 입력합니다. `date_yymm` 인자를 생략하면 현재 날짜를 기준으로 자동으로 설정됩니다.
 
 ``` r
 base_url <- "http://www.allthatjazz.kr/"
-schedule <- get_schedule(base_url, date_yymm = "1902")
+schedule <- get_schedule(base_url, date_yymm = 1902)
 schedule %>% select(date, stage, team)
 ```
 

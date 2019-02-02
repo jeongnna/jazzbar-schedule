@@ -60,7 +60,7 @@ get_schedule <- function(base_url, date_yymm = NULL) {
   if (is.null(date_yymm)) {
     date_yymm <- format(Sys.Date(), "%y%m")
   }
-  sub_url <- str_c("xa02x", date_yymm, ".htm")
+  sub_url <- str_c("xa02x", as.character(date_yymm), ".htm")
   
   url <- str_c(base_url, sub_url)
   website <- read_html(url)
