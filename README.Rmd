@@ -5,7 +5,7 @@ output:
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# When my star performs
+# Jazzbar Schedule
 
 웹 스크래핑을 통해 다양한 재즈바의 공연 스케줄을 통합하는 프로그램입니다. 검색을 통해 원하는 뮤지션의 스케줄만 따로 뽑아낼 수도 있습니다. 현재는 올댓재즈와 에반스의 스케줄을 지원합니다.
 
