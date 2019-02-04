@@ -45,7 +45,7 @@ get_url <- function(html) {
 
 get_members <- function(url) {
   website <- read_html(url)
-  members_html <- website %>% html_nodes("img+ a")
+  members_html <- website %>% html_nodes("img + a")
   if (length(members_html) > 0) {
     members_html %>% html_text(trim = TRUE)
   } else {

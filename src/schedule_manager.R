@@ -1,13 +1,9 @@
-library(tidyverse)
-library(rvest)
-
-
 get_schedule <- function(stage, date_yymm = NULL) {
   if (is.null(date_yymm)) {
     date_yymm <- format(Sys.Date(), "%y%m")
   }
   if (stage %in% c("allthatjazz", "올댓재즈")) {
-    source("src/all-that-jazz.R")
+    source("src/all_that_jazz.R")
   } else if (stage %in% c("evans", "에반스")) {
     source("src/evans.R")
   }
@@ -57,31 +53,18 @@ get_schedule_all <- function(date_yymm = NULL) {
 }
 
 
-when_my_star_performs <- function(name, schedule) {
-  idx <- sapply(schedule$members, function(x) {any(name %in% x)})
-  if (!any(idx)) {  # All FALSE
-    "없졍"
-  } else {
-    schedule <- schedule %>% filter(idx)
-    
-    print_performance <- function(performance) {
-      members <- 
-        performance$members %>% 
-        unlist() %>% 
-        unname() %>% 
-        str_c(collapse = ", ")
-      
-      str_c("Date   : ", performance$date, "\n",
-            "Stage  : ", performance$stage, "\n",
-            "Team   : ", performance$team, "\n",
-            "Members: ", members, "\n")
+save_schedule <- function(schedule) {
+  schedule %>% 
+    select(date, stage, team) %>% 
+    write.csv("schedule.csv", row.names = FALSE)
+  
+  write_file("", "members.txt", append = FALSE)
+  for (members in schedule$members) {
+    if (is.null(members)) {
+      members <- NA
     }
-    
-    info <- ""
-    for (i in 1:nrow(schedule)) {
-      newline <- print_performance(schedule[i, ])
-      info <- str_c(info, newline, sep = "\n")
-    }
-    info
+    members <- members %>% str_c(collapse = " ")
+    write_file(members, "members.txt", append = TRUE)
+    write_file("\n", "members.txt", append = TRUE)
   }
 }
