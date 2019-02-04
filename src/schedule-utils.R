@@ -1,3 +1,7 @@
+library(tidyverse)
+library(rvest)
+
+
 get_schedule <- function(stage, date_yymm = NULL) {
   if (is.null(date_yymm)) {
     date_yymm <- format(Sys.Date(), "%y%m")
@@ -41,16 +45,12 @@ get_schedule <- function(stage, date_yymm = NULL) {
 }
 
 
-get_schedule_all <- function(stagelist = NULL, date_yymm = NULL) {
-  if (is.null(stagelist)) {
-    stagelist <- c("올댓재즈", "에반스")
-  }
-  
+get_schedule_all <- function(date_yymm = NULL) {
+  stagelist <- c("올댓재즈", "에반스")
   schedules <- list()
   for (stage in stagelist) {
     schedules <- schedules %>% append(list(get_schedule(stage, date_yymm)))
   }
-  
   schedules %>% 
     bind_rows %>% 
     arrange(date)
@@ -60,7 +60,7 @@ get_schedule_all <- function(stagelist = NULL, date_yymm = NULL) {
 when_my_star_performs <- function(name, schedule) {
   idx <- sapply(schedule$members, function(x) {any(name %in% x)})
   if (!any(idx)) {  # All FALSE
-    cat("없졍")
+    "없졍"
   } else {
     schedule <- schedule %>% filter(idx)
     
@@ -71,16 +71,17 @@ when_my_star_performs <- function(name, schedule) {
         unname() %>% 
         str_c(collapse = ", ")
       
-      cat("Date   : ", performance$date, "\n",
-          "Stage  : ", performance$stage, "\n",
-          "Team   : ", performance$team, "\n",
-          "Members: ", members, "\n",
-          "\n",
-          sep = "")
+      str_c("Date   : ", performance$date, "\n",
+            "Stage  : ", performance$stage, "\n",
+            "Team   : ", performance$team, "\n",
+            "Members: ", members, "\n")
     }
     
+    info <- ""
     for (i in 1:nrow(schedule)) {
-      print_performance(schedule[i, ])
+      newline <- print_performance(schedule[i, ])
+      info <- str_c(info, newline, sep = "\n")
     }
+    info
   }
 }
