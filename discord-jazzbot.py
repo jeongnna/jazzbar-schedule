@@ -12,8 +12,8 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    bot.schedule = pd.read_csv("schedule.csv")
-    with open("members.txt") as f:
+    bot.schedule = pd.read_csv("data/schedule.csv")
+    with open("data/members.txt") as f:
         content = f.readlines()
     bot.members = [x.strip().split() for x in content]
 

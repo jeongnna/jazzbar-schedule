@@ -1,6 +1,6 @@
 library(tidyverse)
 library(rvest)
-source("src/schedule_manager.R")
+source("src/schedule-manager.R")
 
 
 schedule <- get_schedule_all()
