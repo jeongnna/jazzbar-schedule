@@ -54,17 +54,19 @@ get_schedule_all <- function(date_yymm = NULL) {
 
 
 save_schedule <- function(schedule) {
+  outfile <- "data/schedule.csv"
   schedule %>% 
     select(date, stage, team) %>% 
-    write.csv("schedule.csv", row.names = FALSE)
+    write.csv(outfile, row.names = FALSE)
   
-  write_file("", "members.txt", append = FALSE)
+  outfile <- "data/members.txt"
+  write_file("", outfile, append = FALSE)
   for (members in schedule$members) {
     if (is.null(members)) {
       members <- NA
     }
     members <- members %>% str_c(collapse = " ")
-    write_file(members, "members.txt", append = TRUE)
-    write_file("\n", "members.txt", append = TRUE)
+    write_file(members, outfile, append = TRUE)
+    write_file("\n", outfile, append = TRUE)
   }
 }
