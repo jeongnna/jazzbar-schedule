@@ -1,3 +1,7 @@
+library(tidyverse)
+library(rvest)
+
+
 get_schedule <- function(stage, date_yymm = NULL) {
   if (is.null(date_yymm)) {
     date_yymm <- format(Sys.Date(), "%y%m")

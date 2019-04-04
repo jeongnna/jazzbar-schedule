@@ -1,3 +1,7 @@
+library(tidyverse)
+library(rvest)
+
+
 configure <- function(date_yymm) {
   base_url <- "http://www.clubevans.com/"
   sub_url <- str_c("bbs/board.php?schedule_ym=20", date_yymm, "&bo_table=TODAYS_LIVE")
